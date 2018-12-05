@@ -1,13 +1,13 @@
 Lesson 6 Overview
 =================
 
-.. figure:: img/L6-01-overview-01-pyqgis.svg
+.. figure:: img/L7-01-overview-01-pyqgis.svg
     :width: 500 px
 
 
 This week we will take a quick tour on **how to use Python in QGIS** using the `processing <http://docs.qgis.org/2.18/en/docs/user_manual/processing/index.html>`_ framework.
 
-Until last year, this course taught the use of the `arcpy <http://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy/what-is-arcpy-.htm>`_ module within ArcGIS. Since ArcGIS is a Desktop GIS widely used throughout the private and public sector, feel free to revisit `last year’s Lesson 6 <https://automating-gis-processes.github.io/2016/Lesson6-overview.html>`_.
+Until 2016, this course taught the use of the `arcpy <http://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy/what-is-arcpy-.htm>`_ module within ArcGIS. Since ArcGIS is a Desktop GIS widely used throughout the private and public sector, feel free to revisit `the 2016 Lesson 6 <https://automating-gis-processes.github.io/2016/Lesson6-overview.html>`_.
 
 Learning objectives
 -------------------
@@ -24,7 +24,7 @@ After this week's lesson you should be able to:
 
 The data we use this week is the same that we used already during the `second week <../L2/geopandas-basics.html>`_:
 
-.. figure:: img/L6-01-overview-02-damselfish-simplemap.png
+.. figure:: img/L7-01-overview-02-damselfish-simplemap.png
 
 
 

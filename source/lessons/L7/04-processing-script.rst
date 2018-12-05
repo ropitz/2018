@@ -296,7 +296,7 @@ Run the script
 
 To run the script, find it from the toolbox, select `DAMSELFISH Distributions` as the input layer, `BINOMIAL` as the species attribute, and specify an output directory. Then click ``Run``.
 
-.. figure:: img/L6-04-run-script.png
+.. figure:: img/L7-04-run-script.png
 
 The full script
 ---------------

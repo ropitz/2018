@@ -1,9 +1,9 @@
-Exercise 6
+Exercise 7
 ==========
 
 **For this week there is no exercise that you should return.**
 
-However, you should go through the :doc:`lesson 6 materials <01-overview>` and test in practice how to use Python
+However, you should go through the :doc:`lesson 7 materials <01-overview>` and test in practice how to use Python
 from QGIS. You need to do this by using our cloud computing environment, since there are all necessary
 packages installed for going through the lesson materials.
 
