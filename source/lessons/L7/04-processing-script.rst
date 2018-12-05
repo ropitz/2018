@@ -1,17 +1,19 @@
 Processing toolbox scripts
 ==========================
 
-Managing and organising complex composite algorithms in the *Graphical Modeler* is not only tedious, it also only offers very limited logic operations. For more flexible and more advanced algorithms, the *processing toolbox* allows to implement python scripts. A python script integrated into the processing toolbox can access all of *processing*’s algorithms and its user interface, the entire python *application programming interface* (API) of QGIS (see. the `PyQGIS Developer Cookbook <http://docs.qgis.org/2.18/en/docs/pyqgis_developer_cookbook/intro.html>`_), and any other python module installed in the same python environment QGIS is running it.
+Managing and organising complex composite algorithms in the *Graphical Modeler* is tedious, the possible logical operations are very limited.For more flexible and more advanced algorithms, the *processing toolbox* allows to implement python scripts. A python script integrated into the processing toolbox can access all of *processing*’s algorithms and its user interface, the entire python *application programming interface* (API) of QGIS (see. the `PyQGIS Developer Cookbook <http://docs.qgis.org/3.0/en/docs/pyqgis_developer_cookbook/intro.html>`_), and any other python module installed in the same python environment QGIS is running it.
 
 .. note:: Python and its ecosystem are highly modular. It is not uncommon to find multiple python installations on a single computer. Many applications require specific versions of python and/or some of its modules. For developers of python-dependent software, it has become common to supply a ``requirements.txt`` file which can be used to initialise a so-called *virtual environment*, using tools such as `(ana)conda <https://conda.io/>`_.
-        On Microsoft Windows, unfortunately most programs ship with their private python enviroment which is difficult to access outside of the respective program and even harder to install additional packages into. For instance, ESRI ArcGIS and QGIS use entirely separate python installations. On Linux and macOS, QGIS typically uses the system python environment, but QGIS’ own packages are per-default only accessible from within the program.
+        On Microsoft Windows, unfortunately, most programs ship with their private python enviroment which is difficult to access outside of the respective program and even harder to install additional packages into. For instance, ESRI ArcGIS and QGIS use entirely separate python installations. On Linux and macOS, QGIS typically uses the system python environment, but QGIS’ own packages are per-default only accessible from within the program.
 
-To add a new python script to the processing toolbox, choose *Scripts → Tools → Create new script* from the toolbox. It is advisable to try the script in the interactive **IPyConsole** first, though.
+To add a new python script to the processing toolbox, choose *Scripts → Tools → Create new script* from the toolbox. It is advisable to try parts of the script in the interactive **IPyConsole** first, though.
 
 *Processing* in the IPython console
 -----------------------------------
 
-.. note:: In this course, we use the soon-to-be-released next major QGIS version, 3.0. There have been major changes in QGIS, one of them being a complete rewrite of the *processing API*. At the time of this writing, documentation is still incomplete.
+.. note:: In this course, we use version 3.4 of QGIS. There have been major changes in QGIS, one of them being a complete rewrite of the *processing API*. At the time of this writing, documentation is still incomplete. The best source of information on the Python bindings of *Processing* algorithms is the *online help[1]_* on an interactive Python console.
+
+.. [1] “online” in the sense of context-sensitive help from within the command line interface. Not necessarily refering to the internet in any way.
 
 Import the ``processing`` module to use its algorithms:
 
@@ -19,7 +21,7 @@ Import the ``processing`` module to use its algorithms:
 
     import processing
 
-Previous to QGIS 2.99, *processing* offered a ``processing.alglist()`` command to list all available algorithms and search for keywords in their names. In QGIS 3.0, the following two lines are an easy drop-in for the same search:
+Previous to QGIS 2.99, *processing* offered a ``processing.alglist()`` command to list all available algorithms and search for keywords in their names. In QGIS 3.0 and later, the following two lines are an easy drop-in for the same search:
 
 .. code:: python
 
@@ -106,29 +108,65 @@ Rasterise Species Range Maps
 
 We want to create a script which for our example *damselfish* dataset or any similar dataset loops over the described species, and exports one raster dataset per species, containing its respective species range map.
 
-Let’s develop the script in the *IPython console*. Because at this stage we don’t run this script from within *processing*, we have to import ``processing`` manually, and manually define the input variables which will later be taken from the toolbox menu. (Make sure you have the *damselfish* data loaded.)
+.. note:: Scripts in the processing toolbox are now implemented as *classes* inheriting from ``QgsProcessingAlgorithm``. *Classes* can be interpreted as blueprints from which *objects* are instantiated at a program’s runtime. *Objects*, in turn, are the corner stone of `object-oriented programming <http://ee402.eeng.dcu.ie/introduction/chapter-1---introduction-to-object-oriented-programming>`_. They are entities containing data (variables) and code (methods).
+
+Object-oriented programming is the prevailing paradigm of software development. It is an extremely valuable skill, but teaching it is outside of the scope of this course. We provide the following template structure[2]_ which allows us to dive into implementing the actual algorithm. Feel free to use at for any other project! 
+
+.. [2] This is a minimal template, sufficient for this exercise. You can also use the built-in template by choosing *Create new script from template …*. The resulting skeleton script is more complex, but also more comprehensive.
 
 .. code:: python
 
-    import os.path
+    #!/bin/env python
+
     import processing
+    import string
 
-    # define variables manually (hard-coded),
-    # only for script development on the console
-    # (replaced later)
+    from qgis.core import (
+        QgsProcessing,
+        QgsProcessingAlgorithm
+    )
 
-    # input layer
-    Species_Range_Polygons = iface.activeLayer()
-    # species column name
-    Species_Attribute = "BINOMIAL"
-    # column name to be added and rasterised
-    Presence_Field_Name = "presence"
-    # value for this column (and the later raster values)
-    Presence_Field_Value = 1
-    # output directory
-    Output_Directory = "/tmp"
 
-The variable names are already prepared for later saving this script as a *processing* script. The variable names are cleaned (underscore is replaced by space) and used for labelling the input user interface. Thus, a variable name of ``Species_Range_Polygons`` will result in an input field labelled “Species Range Polygons”.
+    class RENAME_THIS(QgsProcessingAlgorithm):
+
+        def __init__(self):
+            super().__init__()
+
+        def createInstance(self):
+            return type(self)()
+
+        def displayName(self):
+            return "NAME OF YOUR SCRIPT IN THE PROCESSING TOOLBOX"
+
+        def name(self):
+            name = "".join([
+                character for character in self.displayName().lower()
+                if character in string.ascii_letters
+            ])
+            return name
+
+        def initAlgorithm(self, config=None):
+            # specify the possible parameters for your tool here
+            pass
+
+        def processAlgorithm(self, parameters, context, feedback):
+            # add the actual processing steps here
+            return {}
+
+
+Open the *Processing toolbox* and select *Create new script …* from the Python icon in the toolbar.
+
+.. figure:: img/L7-04-create-new-script.png
+      :width: 374 px
+
+Copy-and-paste the template code from before into the editor window that opens and immediately make the following changes:
+   1. **Rename the class from `RENAME_THIS` to a meaningful name.** (line 12) 
+         `Python code style guidelines <https://www.python.org/dev/peps/pep-0008/#class-names>`_ recommend a *CapWords* style, i.e. each word in the class name starts with an uppercase letter. The class name should refer to the function of the class. We are building a tool, let’s revisit how we call physical-world tools: a good example is *Screwdriver*: It’s a tool to drive (inserting) a screw (into some material). Were it a software tool, a good class name would be `ScrewDriver`. Our tool rasterises species range maps, let’s call it `SpeciesRangeMapsRasteriser`.
+   2. **Change the *display name* of our tool.** (line 21) 
+         The names of most of the algorithms in the *processing* toolbox consist of a verb and an object (e.g. “Create spatial index”). Let’s stick with this concept and call our tool “Rasterise species range maps”.
+
+
+
 
 Adding a new field and updating its value
 -----------------------------------------
