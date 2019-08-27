@@ -1,4 +1,4 @@
-# Automating GIS-processes - Sphinx + GitHub Pages
+
 
 [![Build Status](https://travis-ci.org/Automating-GIS-processes/2018.svg?branch=master)](https://travis-ci.org/Automating-GIS-processes/2018)
 
@@ -64,16 +64,9 @@ from that branch to `master` using **pull requests**.
 
 ## Browser based programming environment
 
-This course site provides programming environment that allows anyone to immediately try and run all the codes directly in the browser. This functionality is done using [Binder](https://mybinder.org/) and [CSC Notebooks (for Universities in Finland)](https://notebooks.csc.fi/#/) -services.
+This course site provides programming environment that allows anyone to immediately try and run all the codes directly in the browser. This functionality is done using [Binder](https://mybinder.org/) 
 
-Binder environment is controlled from [environment.yml](environment.yml). CSC Notebooks are controlled separately from [https://github.com/Automating-GIS-processes/notebooks](https://github.com/Automating-GIS-processes/notebooks) -repository. 
+Binder environment is controlled from [environment.yml](environment.yml). 
 
-## Contact & Developers
-
-- **Henrikki Tenkanen**
-
-- **Vuokko Heikinheimo**.
-
-See contact info from [here](https://automating-gis-processes.github.io/2017/course-info/course-info.html).
 
 
