@@ -11,11 +11,11 @@ The docs are written using a combination of [Sphinx](http://www.sphinx-doc.org/e
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" align="left" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a></a>
 <img src="https://github.com/Automating-GIS-processes/2016/blob/master/source/img/GPLv3_Logo.jpg" width="80">
  
-We hope that the materials provided here would be helpful for others. Thus, we share all the lesson materials openly, and also our source codes and lesson materials are openly available **from these pages**.
+The original developing team from Helsinki made their code available iwth the hope that the materials provided here would be helpful for others. Thus, they have shared all the lesson materials openly, and their source codes and lesson materials are openly available **from these pages**.
 
-**Our materials and code snippets are licensed** with **Creative Commons Attribution-ShareAlike 4.0 International licence** and **GNU GPLv3 license**. 
+**Their, and my adapted, materials and code snippets are licensed** with **Creative Commons Attribution-ShareAlike 4.0 International licence** and **GNU GPLv3 license**. 
 
-**Read more about the license and terms of usage from [here](https://github.com/Automating-GIS-processes/2016/blob/master/source/License-terms.rst)**.
+**Read more about the license and terms of usage for the original Helsinki course materials from [here](https://github.com/Automating-GIS-processes/2016/blob/master/source/License-terms.rst)**.
 
 ## Requirements
 
